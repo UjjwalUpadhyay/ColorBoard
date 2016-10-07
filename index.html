@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-app="app">
+  <div class="main-container" ng-controller="gameController">
+    <div class="board">
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+      <div class="cell" ng-click="unColor($event)"></div>
+    </div>
+    <div class="inputs">
+      <div>
+        <label> Enter the number of cells you want to play with: </label>
+        <input type="number" min="1" max="16" ng-model="level" ng-disabled="disableBtns">
+      </div>
+      <div>
+        <label> Enter the number of chances you want: </label>
+        <input type="number" min="1" max="100" ng-model="maxGames" ng-disabled="disableBtns">
+      </div>
+    </div>
+  <button class="start" ng-disabled="disableBtns" ng-click="startGame()">Start</button>
+  </div>
+  <script type="text/javascript" src="lib/angular.js"></script>
+  <script type="text/javascript" src="controller.js"></script>
+</body>
+</html>
