@@ -17,6 +17,14 @@
   border: 1px solid black;
 }
 
+.main-container .board .colored {
+  background-color: red;
+}
+
+.main-container .board .uncolored {
+  background-color: #fff;
+}
+
 .main-container .inputs {
   position: relative;
   top: 20px;

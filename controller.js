@@ -5,17 +5,16 @@ app.controller("gameController", ['$scope', '$interval', function($scope, $inter
   $scope.gameCount = 1;
   $scope.maxGames = 3;
   $scope.disableBtns = false;
+  $scope.gridCells = [{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false},{colored: false}];
+  //Initialize the gameCount, count and set all colors back to uncolored
   $scope.initCells = function () {
     $scope.gameCount = 1;
     $scope.count = 0;
-
-    var el = document.querySelectorAll('.cell');
-    for (var i=0;i<16;i++) {
-      if (el[i].style.backgroundColor==='red') {
-        el[i].style.backgroundColor="#fff";
-      }
+    for (var i=0; i<$scope.gridCells.length; i++) {
+        $scope.gridCells[i].colored=false;
     }
   }
+  //Function to call start of the game
   $scope.startGame = function() {
     $scope.disableBtns = true;
     //Uncolor all the cells on the start
@@ -23,6 +22,7 @@ app.controller("gameController", ['$scope', '$interval', function($scope, $inter
     $scope.colorElements($scope.level);
     $scope.interval();
   }
+  //Interval wherein the game continues for the number of chances given by user
   $scope.interval = function () {
     var promise = $interval(function () {
       if($scope.count===$scope.level) {
@@ -40,9 +40,10 @@ app.controller("gameController", ['$scope', '$interval', function($scope, $inter
       }
     }, 4000);
   }
-  $scope.unColor = function($event) {
-    if ($event.target.style.backgroundColor === "red") {
-        $event.target.style.backgroundColor = "#fff";
+  //Function to set the color of the cell as white on clicking any colored cell
+  $scope.unColor = function(cell) {
+     if (cell.colored) {
+        cell.colored = false;
         $scope.count++;
         if($scope.count===$scope.level) {
           alert ("You won the game");
@@ -50,12 +51,12 @@ app.controller("gameController", ['$scope', '$interval', function($scope, $inter
         }
     }
   }
+  //Color the cells randomly in the grid
   $scope.colorElements = function(toColor) {
-    var el = document.querySelectorAll('.cell');
     for (var i=0; i<toColor;) {
       var index = Math.floor(Math.random()*1000)%16;
-      if (el[index].style.backgroundColor!=='red'){
-          el[index].style.backgroundColor = "red";
+      if ($scope.gridCells[index].colored===false){
+          $scope.gridCells[index].colored=true;
           i++;
         }
     }
